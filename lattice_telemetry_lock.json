@@ -1,9 +1,7 @@
 {
-  "timestamp": 1792495517.1856997,
-  "utc": "2026-10-20 11:25:17 UTC",
-  "lattice": "phi-hexagonal",
   "nodes": 127,
   "frequency": 528.0,
-  "coherence": 570.3982,
-  "status": "synchronized"
+  "phi_scale": 1.618033988749895,
+  "coherence": 77092.8803,
+  "status": "PHASE LOCKED & ABSOLUTE COHERENCE"
 }
