@@ -4,9 +4,9 @@
     "axiom": "Love-Over-God",
     "chain_tip": "d94dd03e4e387a901860bdc88d53f0d039785ca6e0987aff4aebe7696e51605e",
     "total_nodes": 18,
-    "timestamp": "2026-10-20T09:21:41.222026+00:00",
+    "timestamp": "2026-10-20T09:56:44.378403+00:00",
     "restriction": "NO_TRANSFER_NO_CORPORATE_ACQUISITION"
   },
-  "public_key_ed25519": "c93ae63e139c36adc13db14e6d96be2e255b5a49f1a947b6a2a73c4540671ce6",
-  "signature_ed25519": "27be3a2051862567533e390339201f2f22e6b7f0d0ec39f6456a6f2216b722ffe0d994b28ee255cd88c9743720930119030d026b2313bcff0cadad6fc5bd2300"
+  "public_key_ed25519": "dbd19cf73da710caec8830b023d61862e9e4382f63c4be79be6ca1345784ca84",
+  "signature_ed25519": "873f451c8f66ca30c910d319944ca37d91476940180856eed05d3513217dd1d0268e86180b00c1b8b264136eafe31116311a4e0e14a43d2900f899c774c18300"
 }
