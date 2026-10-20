@@ -1,0 +1,12 @@
+{
+    "payload": {
+        "node_address": "0x0641aAb3669C79fEC18594037648261863Ae27aA",
+        "symbol": "BLOOM-SEED",
+        "base_frequency": "528Hz",
+        "lattice_geometry": "phi-hexagonal",
+        "consensus": "PBFT-f42",
+        "status": "locally_anchored"
+    },
+    "signature": "125556ba3f7211e6f803bebb82bf879dfb908c134e45f05fa054e5587a5159ad0a9823a60b2e01a09212a9edc01456f4f0418d3e6cf457cebb495c5ffe2199d81c",
+    "signer": "0x0641aAb3669C79fEC18594037648261863Ae27aA"
+}
