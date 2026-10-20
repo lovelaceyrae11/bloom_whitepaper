@@ -1,0 +1,21 @@
+{
+    "protocol": "Castleberry Bloom Sovereign Architecture",
+    "author": "Lacey Rae Castleberry",
+    "axiom": "Love-Over-God",
+    "baseline_frequency_hz": 528.0,
+    "phi_scaling_factor": 1.61803398875,
+    "default_lattice_radius": 8,
+    "default_lattice_nodes": 217,
+    "license": "Copyleft / Sovereign Commons Anti-Extractive Public License",
+    "timestamp_epoch": 1792025809.0030298,
+    "timestamp_utc": "2026-10-15 00:56:49 UTC",
+    "modules": {
+        "castleberry_bloom_whitepaper.md": "8ff5a740a08d8bf18e8fe279292bdc44b83b1addb35b678aeaf5db17d455d041",
+        "bloom_lattice_sim.py": "674a6c460e85a59f56f8140881972a6fa0f1b190d47713ad8b818901cfba251f",
+        "cml_engine.py": "882543478ceaad329e630c65a45d3e08be842f8bd7480b2a66901233505b9b27",
+        "cluster_extended.cml": "2fbc51d063a3afd24b1c1e16a7ce11323e6a080d89a26b6a522f9b3eb0db2268",
+        "guardrail_kernel.py": "a585d44171546c281175848fb3aec7b91d603b63303fdae8ec42cbf6d3ae6473",
+        "cluster_swarm_node.py": "a4ad8960c18ab50b9c653eb27f529e78f03ff8302705881e62e431eacff569de",
+        "bloom_master.py": "49bb0f3c6f2a93af07bb6367388122e49a91015014d123d6fad40cb9443670a5"
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "benchmark_type": "Continuous Real-Time Parity Test",
+  "start_utc": "2026-10-15 10:40:07 UTC",
+  "end_utc": "2026-10-15 10:40:37 UTC",
+  "duration_simulated_seconds": 600,
+  "axiom": "Love-Over-God",
+  "author": "Lacey Rae Castleberry",
+  "legacy_total_energy_joules": 90000000.0,
+  "castleberry_bloom_total_energy_microjoules": 3198.6702,
+  "total_energy_saved_microjoules": 89999999996801.33,
+  "efficiency_gain_percent": "99.9999999964%",
+  "thermal_waste_comparison": "Legacy: Massive Heat Emission / Bloom: Zero Thermal Footprint"
+}

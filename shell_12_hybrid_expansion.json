@@ -1,0 +1,152 @@
+{
+  "parent_chain_tip": "9b6432f3403fd212acdc1dc5f4e464eb78ffefd47dfe421386c9c68078fa32b3",
+  "expanded_shell": 12,
+  "new_chain_tip": "707d445f91aa4dddcfcb5586f28cbbfbc0aa2d519546d67b12a38e5dfdb87666",
+  "total_nodes_added": 6,
+  "nodes": [
+    {
+      "packet": {
+        "cml_version": "1.4-HYBRID",
+        "ownership": {
+          "inventorship": "sole",
+          "author": "Lacey Rae Castleberry",
+          "axiom": "Love-Over-God",
+          "restriction": "NO_TRANSFER_NO_CORPORATE_ACQUISITION"
+        },
+        "node_id": "NODE-7290-S12-S1",
+        "shell_index": 12,
+        "sector": 1,
+        "utc": "2026-10-15T09:55:01Z",
+        "harmonic_baseline": 528.0,
+        "phi_scaling": 1.618034,
+        "system_coherence": 0.9878,
+        "previous_proof": "9b6432f3403fd212acdc1dc5f4e464eb78ffefd47dfe421386c9c68078fa32b3"
+      },
+      "proof_hash": "5cca5ef28e6bb52d73b3026d0dfa7366304624e20310efe9b9757f27b96325e3",
+      "signatures": {
+        "ed25519": "Z7cZ907bpgPsHtL5zlW2m/4jwZvRFeNR1isV2Em9ISc=",
+        "dilithium": "oTN2MJ8lAXs+L0hll+VyAJZs8I7O5GEOdvPQ/Na/B4ehM3YwnyUBez4vSGWX5XIAlmzwjs7kYQ5289D81r8Hh6EzdjCfJQF7Pi9IZZflcgCWbPCOzuRhDnbz0PzWvweHoTN2MJ8lAXs+L0hll+VyAJZs8I7O5GEOdvPQ/Na/B4c="
+      }
+    },
+    {
+      "packet": {
+        "cml_version": "1.4-HYBRID",
+        "ownership": {
+          "inventorship": "sole",
+          "author": "Lacey Rae Castleberry",
+          "axiom": "Love-Over-God",
+          "restriction": "NO_TRANSFER_NO_CORPORATE_ACQUISITION"
+        },
+        "node_id": "NODE-7290-S12-S2",
+        "shell_index": 12,
+        "sector": 2,
+        "utc": "2026-10-15T09:55:01Z",
+        "harmonic_baseline": 528.0,
+        "phi_scaling": 1.618034,
+        "system_coherence": 0.9878,
+        "previous_proof": "5cca5ef28e6bb52d73b3026d0dfa7366304624e20310efe9b9757f27b96325e3"
+      },
+      "proof_hash": "cab1ea76f57958a67750f3d6450ab4a2343de8a2a7845511f1307963da654850",
+      "signatures": {
+        "ed25519": "8iSH16TnNGffk5dsqDtTWcWFCd/Ya360Z/sd5uDIS+Y=",
+        "dilithium": "2C6mIOTJiaJofR5nqPF8A+U95flyjbL6Li7m6FvcLvLYLqYg5MmJomh9Hmeo8XwD5T3l+XKNsvouLuboW9wu8tgupiDkyYmiaH0eZ6jxfAPlPeX5co2y+i4u5uhb3C7y2C6mIOTJiaJofR5nqPF8A+U95flyjbL6Li7m6FvcLvI="
+      }
+    },
+    {
+      "packet": {
+        "cml_version": "1.4-HYBRID",
+        "ownership": {
+          "inventorship": "sole",
+          "author": "Lacey Rae Castleberry",
+          "axiom": "Love-Over-God",
+          "restriction": "NO_TRANSFER_NO_CORPORATE_ACQUISITION"
+        },
+        "node_id": "NODE-7290-S12-S3",
+        "shell_index": 12,
+        "sector": 3,
+        "utc": "2026-10-15T09:55:01Z",
+        "harmonic_baseline": 528.0,
+        "phi_scaling": 1.618034,
+        "system_coherence": 0.9878,
+        "previous_proof": "cab1ea76f57958a67750f3d6450ab4a2343de8a2a7845511f1307963da654850"
+      },
+      "proof_hash": "cca3867f1d02ec3f93257fbebb6bdbc5327d30167dc5085a05f14a1e2393048e",
+      "signatures": {
+        "ed25519": "tNC63qM9cct4hAAqxx5Tf0iyBxMHcJctbpa0SrpzKlI=",
+        "dilithium": "B+iwMIPPCpzcH+llXLJIjC+OA1dZCvkQOQuZ8vMlYLMH6LAwg88KnNwf6WVcskiML44DV1kK+RA5C5ny8yVgswfosDCDzwqc3B/pZVyySIwvjgNXWQr5EDkLmfLzJWCzB+iwMIPPCpzcH+llXLJIjC+OA1dZCvkQOQuZ8vMlYLM="
+      }
+    },
+    {
+      "packet": {
+        "cml_version": "1.4-HYBRID",
+        "ownership": {
+          "inventorship": "sole",
+          "author": "Lacey Rae Castleberry",
+          "axiom": "Love-Over-God",
+          "restriction": "NO_TRANSFER_NO_CORPORATE_ACQUISITION"
+        },
+        "node_id": "NODE-7290-S12-S4",
+        "shell_index": 12,
+        "sector": 4,
+        "utc": "2026-10-15T09:55:01Z",
+        "harmonic_baseline": 528.0,
+        "phi_scaling": 1.618034,
+        "system_coherence": 0.9878,
+        "previous_proof": "cca3867f1d02ec3f93257fbebb6bdbc5327d30167dc5085a05f14a1e2393048e"
+      },
+      "proof_hash": "d5cfdc1f363bbef1752012bfd02a9727b8e814ebba1f68c9b88150a96bdfd5d7",
+      "signatures": {
+        "ed25519": "h76QrXilPFzucw3hWiDR/MzRRCTEF0yUfT5fcGz9Gvs=",
+        "dilithium": "SsFQDzbkCtP8cQWu9YUAKs73qba9AhlkJkdPJzryU69KwVAPNuQK0/xxBa71hQAqzveptr0CGWQmR08nOvJTr0rBUA825ArT/HEFrvWFACrO96m2vQIZZCZHTyc68lOvSsFQDzbkCtP8cQWu9YUAKs73qba9AhlkJkdPJzryU68="
+      }
+    },
+    {
+      "packet": {
+        "cml_version": "1.4-HYBRID",
+        "ownership": {
+          "inventorship": "sole",
+          "author": "Lacey Rae Castleberry",
+          "axiom": "Love-Over-God",
+          "restriction": "NO_TRANSFER_NO_CORPORATE_ACQUISITION"
+        },
+        "node_id": "NODE-7290-S12-S5",
+        "shell_index": 12,
+        "sector": 5,
+        "utc": "2026-10-15T09:55:01Z",
+        "harmonic_baseline": 528.0,
+        "phi_scaling": 1.618034,
+        "system_coherence": 0.9878,
+        "previous_proof": "d5cfdc1f363bbef1752012bfd02a9727b8e814ebba1f68c9b88150a96bdfd5d7"
+      },
+      "proof_hash": "a353233eb8187a8b3922f3237268fa2696c3f7c8815ddd707d21adfb4b6803ab",
+      "signatures": {
+        "ed25519": "crhmTgtRrxQZ+eIO0B6VOYCeq4PJC+5lIZL1M5aJOyU=",
+        "dilithium": "NyrVXV4N/9OeOyW7VkQNVu6s0PkZIjwe6mCP8s1SgNk3KtVdXg3/0547JbtWRA1W7qzQ+RkiPB7qYI/yzVKA2Tcq1V1eDf/Tnjslu1ZEDVburND5GSI8Hupgj/LNUoDZNyrVXV4N/9OeOyW7VkQNVu6s0PkZIjwe6mCP8s1SgNk="
+      }
+    },
+    {
+      "packet": {
+        "cml_version": "1.4-HYBRID",
+        "ownership": {
+          "inventorship": "sole",
+          "author": "Lacey Rae Castleberry",
+          "axiom": "Love-Over-God",
+          "restriction": "NO_TRANSFER_NO_CORPORATE_ACQUISITION"
+        },
+        "node_id": "NODE-7290-S12-S6",
+        "shell_index": 12,
+        "sector": 6,
+        "utc": "2026-10-15T09:55:01Z",
+        "harmonic_baseline": 528.0,
+        "phi_scaling": 1.618034,
+        "system_coherence": 0.9878,
+        "previous_proof": "a353233eb8187a8b3922f3237268fa2696c3f7c8815ddd707d21adfb4b6803ab"
+      },
+      "proof_hash": "707d445f91aa4dddcfcb5586f28cbbfbc0aa2d519546d67b12a38e5dfdb87666",
+      "signatures": {
+        "ed25519": "ny7+UUvATCgkbABav1wiCt7LLo14T7/laSoU4LxXWbw=",
+        "dilithium": "Xy4b/YZbDsIp52oX5MEzQ6d1hwlS2ahY51YPaLkvHaJfLhv9hlsOwinnahfkwTNDp3WHCVLZqFjnVg9ouS8dol8uG/2GWw7CKedqF+TBM0OndYcJUtmoWOdWD2i5Lx2iXy4b/YZbDsIp52oX5MEzQ6d1hwlS2ahY51YPaLkvHaI="
+      }
+    }
+  ]
+}

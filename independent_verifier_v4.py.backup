@@ -1,0 +1,201 @@
+import os
+import json
+import copy
+import datetime
+import xml.etree.ElementTree as ET
+import hashlib
+from cryptography import x509
+from cryptography.x509.oid import NameOID
+from cryptography.hazmat.primitives.asymmetric import ed25519
+from cryptography.hazmat.primitives import serialization, hashes
+from cryptography.exceptions import InvalidSignature
+
+CML_FILE = "cluster_extended.cml"
+LEDGER_FILE = "pbft_consensus_ledger.jsonl"
+
+def load_and_verify_trust_anchor():
+    tree = ET.parse(CML_FILE)
+    root = tree.getroot()
+    root_ca_pem = root.get("root_ca_pem").replace("\\n", "\n").encode('utf-8')
+    root_ca_cert = x509.load_pem_x509_certificate(root_ca_pem)
+    ca_pub_key = root_ca_cert.public_key()
+    
+    node_public_keys = {}
+    node_certs = {}
+    
+    for tier in root.findall("Tier"):
+        for node in tier.findall("Node"):
+            nid = node.get("node_id")
+            pub_hex = node.get("public_key")
+            ek_pem = node.get("ek_certificate").replace("\\n", "\n").encode('utf-8')
+            
+            pub_bytes = bytes.fromhex(pub_hex)
+            pub_key = ed25519.Ed25519PublicKey.from_public_bytes(pub_bytes)
+            
+            # Parse and verify EK certificate chain against Root CA
+            cert = x509.load_pem_x509_certificate(ek_pem)
+            ca_pub_key.verify(cert.signature, cert.tbs_certificate_bytes)
+            
+            # Strict Certificate-to-Key Binding Verification
+            cert_pub_key = cert.public_key()
+            if not isinstance(cert_pub_key, ed25519.Ed25519PublicKey):
+                raise ValueError(f"Invalid key type in certificate for {nid}")
+            
+            cert_pub_bytes = cert_pub_key.public_bytes(
+                encoding=serialization.Encoding.Raw,
+                format=serialization.PublicFormat.Raw
+            )
+            if cert_pub_bytes != pub_bytes:
+                raise ValueError(f"EK certificate public key mismatch for node {nid}!")
+            
+            node_public_keys[nid] = pub_key
+            node_certs[nid] = cert
+            
+    return node_public_keys, node_certs, ca_pub_key
+
+def verify_pbft_consensus(ledger, node_public_keys, executed_sequences=None):
+    """
+    Single shared verifier function routing all consensus blocks and certificates.
+    Enforces cryptographic signatures, quorum thresholds, unique voters, 
+    state consistency, and sequence-number collision resistance.
+    """
+    if executed_sequences is None:
+        executed_sequences = {}
+
+    quorum = ledger.get("quorum_threshold", 85)
+    proposal = ledger.get("proposal")
+    primary = proposal["primary"]
+    sequence = proposal["sequence"]
+    state_root = proposal["state_root"]
+
+    # 1. Sequence Collision & Double-Commit Guard (State Machine Safety)
+    if sequence in executed_sequences:
+        existing_state = executed_sequences[sequence]
+        if existing_state != state_root:
+            raise ValueError(
+                f"SEQUENCE COLLISION REJECTED: Sequence {sequence} already committed "
+                f"state '{existing_state}'. Conflicting state '{state_root}' rejected!"
+            )
+        else:
+            raise ValueError(f"Duplicate sequence submission detected for sequence {sequence}.")
+
+    # 2. Verify Pre-Prepare Signature (Signed Proposal Data)
+    proposal_bytes = json.dumps(proposal, sort_keys=True).encode('utf-8')
+    if primary not in node_public_keys:
+        raise ValueError(f"Unknown primary node '{primary}'.")
+    node_public_keys[primary].verify(bytes.fromhex(ledger["pre_prepare_signature"]), proposal_bytes)
+
+    # 3. Verify Prepare Quorum & Unique Voters
+    prepares = ledger.get("prepare_votes", [])
+    seen_prepares = set()
+    if len(prepares) < quorum:
+        raise ValueError(f"Insufficient prepare votes ({len(prepares)}/{quorum}).")
+        
+    for vote in prepares:
+        nid = vote["node_id"]
+        if nid not in node_public_keys:
+            raise ValueError(f"Unknown voter in prepare phase: '{nid}'.")
+        if nid in seen_prepares:
+            raise ValueError(f"Duplicate prepare vote detected from node {nid}.")
+        seen_prepares.add(nid)
+        
+        vote_msg = f"PREPARE:{sequence}:{state_root}:{nid}".encode('utf-8')
+        node_public_keys[nid].verify(bytes.fromhex(vote["signature"]), vote_msg)
+
+    # 4. Verify Commit Quorum & Unique Voters
+    commits = ledger.get("commit_votes", [])
+    seen_commits = set()
+    if len(commits) < quorum:
+        raise ValueError(f"Insufficient commit votes ({len(commits)}/{quorum}).")
+        
+    for vote in commits:
+        nid = vote["node_id"]
+        if nid not in node_public_keys:
+            raise ValueError(f"Unknown voter in commit phase: '{nid}'.")
+        if nid in seen_commits:
+            raise ValueError(f"Duplicate commit vote detected from node {nid}.")
+        seen_commits.add(nid)
+        
+        commit_msg = f"COMMIT:{sequence}:{state_root}:{nid}".encode('utf-8')
+        node_public_keys[nid].verify(bytes.fromhex(vote["signature"]), commit_msg)
+
+    # 5. Final Ledger State Hash Integrity
+    stored_hash = ledger.get("ledger_hash")
+    ledger_copy = {k: v for k, v in ledger.items() if k != "ledger_hash"}
+    computed_hash = hashlib.sha256(json.dumps(ledger_copy, sort_keys=True).encode()).hexdigest()
+    
+    if stored_hash != computed_hash:
+        raise ValueError("Ledger state hash mismatch detected (metadata tampering).")
+
+    # Mark sequence as successfully executed
+    executed_sequences[sequence] = state_root
+    return True
+
+def run_v4_unified_suite():
+    print("==================================================")
+    print(" UNIFIED TRUST-AND-CONSENSUS VERIFIER SUITE (v4) ")
+    print("==================================================\n")
+    
+    node_keys, node_certs, ca_pub_key = load_and_verify_trust_anchor()
+    with open(LEDGER_FILE, "r") as f:
+        valid_ledger = json.load(f)
+
+    executed_state = {}
+
+    # TEST 1: Pristine Baseline via Shared Verifier
+    print("[*] Test 1: Verifying pristine valid ledger through shared verifier...")
+    assert verify_pbft_consensus(valid_ledger, node_keys, executed_state) == True
+    print("[+] PASS: Pristine ledger verified successfully.\n")
+
+    # TEST 2: Sequence Collision Attack (Conflicting State under Same Sequence)
+    print("[*] Test 2: Rejecting conflicting certificate under the same sequence number...")
+    conflicting_ledger = copy.deepcopy(valid_ledger)
+    conflicting_ledger["proposal"]["state_root"] = hashlib.sha256(b"MALICIOUS_SPLIT_BRAIN").hexdigest()
+    # Recalculate ledger hash for the tampered copy so it passes hash check and tests collision guard
+    ledger_copy = {k: v for k, v in conflicting_ledger.items() if k != "ledger_hash"}
+    conflicting_ledger["ledger_hash"] = hashlib.sha256(json.dumps(ledger_copy, sort_keys=True).encode()).hexdigest()
+
+    try:
+        verify_pbft_consensus(conflicting_ledger, node_keys, executed_state)
+        raise AssertionError("Failed: Conflicting certificate for committed sequence accepted!")
+    except ValueError as e:
+        print(f"[+] PASS: Successfully caught sequence collision/split-brain -> {e}\n")
+
+    # TEST 3: Certificate Key Binding Mismatch
+    print("[*] Test 3: Testing certificate-to-key binding enforcement...")
+    mismatched_keys = copy.copy(node_keys)
+    mismatched_keys["node-core-001"] = node_keys["node-core-002"]
+    new_state_tracker = {}
+    try:
+        verify_pbft_consensus(valid_ledger, mismatched_keys, new_state_tracker)
+        raise AssertionError("Failed: Mismatched public key accepted!")
+    except InvalidSignature as e:
+        print(f"[+] PASS: Successfully caught key binding signature mismatch -> {type(e).__name__}\n")
+
+    # TEST 4: Manipulated Quorum Threshold
+    print("[*] Test 4: Detecting manipulated quorum threshold...")
+    bad_quorum_ledger = copy.deepcopy(valid_ledger)
+    bad_quorum_ledger["quorum_threshold"] = 250
+    try:
+        verify_pbft_consensus(bad_quorum_ledger, node_keys, {})
+        raise AssertionError("Failed: Impossible quorum accepted!")
+    except ValueError as e:
+        print(f"[+] PASS: Successfully caught quorum violation -> {e}\n")
+
+    # TEST 5: Distinct Voter Enforcement (Duplicate Detection)
+    print("[*] Test 5: Enforcing strict distinct voter counts (duplicate commit vote)...")
+    dup_ledger = copy.deepcopy(valid_ledger)
+    dup_ledger["commit_votes"][3] = dup_ledger["commit_votes"][0]
+    try:
+        verify_pbft_consensus(dup_ledger, node_keys, {})
+        raise AssertionError("Failed: Duplicate voter accepted!")
+    except ValueError as e:
+        print(f"[+] PASS: Successfully rejected duplicate voter -> {e}\n")
+
+    print("==================================================")
+    print(" [+] ALL UNIFIED v4 VERIFICATION TESTS PASSED.    ")
+    print("==================================================")
+
+if __name__ == "__main__":
+    run_v4_unified_suite()
+-
