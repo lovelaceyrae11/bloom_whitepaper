@@ -1,0 +1,12 @@
+{
+  "metadata": {
+    "author": "Lacey Rae Castleberry",
+    "axiom": "Love-Over-God",
+    "chain_tip": "d94dd03e4e387a901860bdc88d53f0d039785ca6e0987aff4aebe7696e51605e",
+    "total_nodes": 18,
+    "timestamp": "2026-10-15T09:09:30.723949+00:00",
+    "restriction": "NO_TRANSFER_NO_CORPORATE_ACQUISITION"
+  },
+  "public_key_ed25519": "a1a47cf5d28704925ef74648cedc64090170ed83c4f5a8d20059b7275e10711b",
+  "signature_ed25519": "3a78c9bba31cc17deddb1b4e839d80e207f2410b0098369a5211c39d4e0934ad6c133593df9ccd5b133ae54bba88942b575f51f1f1b084c8328abfbbb5a6b407"
+}

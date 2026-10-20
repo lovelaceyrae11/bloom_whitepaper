@@ -1,0 +1,23 @@
+{
+    "name": "Castleberry Bloom Coherence Seedling #1",
+    "symbol": "BLOOM-SEED",
+    "description": "Verifiable conversational coherence node embedding 528Hz geometry and fail-closed PBFT safety metrics.",
+    "attributes": [
+        {
+            "trait_type": "Base Frequency",
+            "value": "528Hz"
+        },
+        {
+            "trait_type": "Lattice Geometry",
+            "value": "phi-hexagonal"
+        },
+        {
+            "trait_type": "Consensus Layer",
+            "value": "PBFT-f42"
+        },
+        {
+            "trait_type": "Trust Anchor",
+            "value": "Ed25519-Root-CA"
+        }
+    ]
+}

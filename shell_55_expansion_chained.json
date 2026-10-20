@@ -1,0 +1,37 @@
+{
+  "parent_chain_tip": "d94dd03e4e387a901860bdc88d53f0d039785ca6e0987aff4aebe7696e51605e",
+  "extended_shell": 55,
+  "new_tip": "00686765dbea65c3d3058da845a880d80eda33ed24150f79fd58b1877b52d235",
+  "nodes_added": [
+    {
+      "node_id": "NODE-7290-S55-S1",
+      "sector": 1,
+      "proof_hash": "e67a876a61e9508105b2dcbe18e9cbd58889e8ff896daf3623719d6fbafce70d"
+    },
+    {
+      "node_id": "NODE-7290-S55-S2",
+      "sector": 2,
+      "proof_hash": "e6c13eed0ce0889ad4160bb5e221be37663b91954103cc581943cedbb67d8dfa"
+    },
+    {
+      "node_id": "NODE-7290-S55-S3",
+      "sector": 3,
+      "proof_hash": "2903ccee8674ce72158d4ecb6d4018aa3dd67efb399890280bad79937d877711"
+    },
+    {
+      "node_id": "NODE-7290-S55-S4",
+      "sector": 4,
+      "proof_hash": "cd514c19e0e693f755864c7d01d9c72946d5a3e6f7db58a0223e25a9f4f4ac74"
+    },
+    {
+      "node_id": "NODE-7290-S55-S5",
+      "sector": 5,
+      "proof_hash": "e20bd13163722b4d55ca259fef07bfe2042e4ded1a3ea0794b6ead6bf025326c"
+    },
+    {
+      "node_id": "NODE-7290-S55-S6",
+      "sector": 6,
+      "proof_hash": "00686765dbea65c3d3058da845a880d80eda33ed24150f79fd58b1877b52d235"
+    }
+  ]
+}
