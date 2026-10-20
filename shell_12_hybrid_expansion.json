@@ -1,7 +1,7 @@
 {
   "parent_chain_tip": "9b6432f3403fd212acdc1dc5f4e464eb78ffefd47dfe421386c9c68078fa32b3",
   "expanded_shell": 12,
-  "new_chain_tip": "707d445f91aa4dddcfcb5586f28cbbfbc0aa2d519546d67b12a38e5dfdb87666",
+  "new_chain_tip": "62addda0012786fe8c1bc36ea0f1ea9d3668b9f5af3b1ca1bee6c6f0889b8bf9",
   "total_nodes_added": 6,
   "nodes": [
     {
@@ -16,16 +16,16 @@
         "node_id": "NODE-7290-S12-S1",
         "shell_index": 12,
         "sector": 1,
-        "utc": "2026-10-15T09:55:01Z",
+        "utc": "2026-10-20T09:12:36Z",
         "harmonic_baseline": 528.0,
         "phi_scaling": 1.618034,
         "system_coherence": 0.9878,
         "previous_proof": "9b6432f3403fd212acdc1dc5f4e464eb78ffefd47dfe421386c9c68078fa32b3"
       },
-      "proof_hash": "5cca5ef28e6bb52d73b3026d0dfa7366304624e20310efe9b9757f27b96325e3",
+      "proof_hash": "0616b79c393f141d538504ae040d059ed0d4f040302ce6eb708ef9a8fa81818b",
       "signatures": {
-        "ed25519": "Z7cZ907bpgPsHtL5zlW2m/4jwZvRFeNR1isV2Em9ISc=",
-        "dilithium": "oTN2MJ8lAXs+L0hll+VyAJZs8I7O5GEOdvPQ/Na/B4ehM3YwnyUBez4vSGWX5XIAlmzwjs7kYQ5289D81r8Hh6EzdjCfJQF7Pi9IZZflcgCWbPCOzuRhDnbz0PzWvweHoTN2MJ8lAXs+L0hll+VyAJZs8I7O5GEOdvPQ/Na/B4c="
+        "ed25519": "P9A1WtxI0cvYCLmk/apDNHOMH35r9JvRrwxv+Y2cSvw=",
+        "dilithium": "IRzx2ACZhjHj2QGsrLyuAXbuJ9EAqW6BfIFrggBhgbEhHPHYAJmGMePZAaysvK4Bdu4n0QCpboF8gWuCAGGBsSEc8dgAmYYx49kBrKy8rgF27ifRAKlugXyBa4IAYYGxIRzx2ACZhjHj2QGsrLyuAXbuJ9EAqW6BfIFrggBhgbE="
       }
     },
     {
@@ -40,16 +40,16 @@
         "node_id": "NODE-7290-S12-S2",
         "shell_index": 12,
         "sector": 2,
-        "utc": "2026-10-15T09:55:01Z",
+        "utc": "2026-10-20T09:12:36Z",
         "harmonic_baseline": 528.0,
         "phi_scaling": 1.618034,
         "system_coherence": 0.9878,
-        "previous_proof": "5cca5ef28e6bb52d73b3026d0dfa7366304624e20310efe9b9757f27b96325e3"
+        "previous_proof": "0616b79c393f141d538504ae040d059ed0d4f040302ce6eb708ef9a8fa81818b"
       },
-      "proof_hash": "cab1ea76f57958a67750f3d6450ab4a2343de8a2a7845511f1307963da654850",
+      "proof_hash": "cf16a6b38b8fa01a28b48dd3a068e4869a98984329289a4beee5002bbc559f9c",
       "signatures": {
-        "ed25519": "8iSH16TnNGffk5dsqDtTWcWFCd/Ya360Z/sd5uDIS+Y=",
-        "dilithium": "2C6mIOTJiaJofR5nqPF8A+U95flyjbL6Li7m6FvcLvLYLqYg5MmJomh9Hmeo8XwD5T3l+XKNsvouLuboW9wu8tgupiDkyYmiaH0eZ6jxfAPlPeX5co2y+i4u5uhb3C7y2C6mIOTJiaJofR5nqPF8A+U95flyjbL6Li7m6FvcLvI="
+        "ed25519": "dy1X62LqTC2n82Lcji+PnfeXIumpJ4eqcc6EMN00vbI=",
+        "dilithium": "VEwfjTaUQobEVjZupMVlGMTRzS4cEEhhA5QJ/NwMvUlUTB+NNpRChsRWNm6kxWUYxNHNLhwQSGEDlAn83Ay9SVRMH402lEKGxFY2bqTFZRjE0c0uHBBIYQOUCfzcDL1JVEwfjTaUQobEVjZupMVlGMTRzS4cEEhhA5QJ/NwMvUk="
       }
     },
     {
@@ -64,16 +64,16 @@
         "node_id": "NODE-7290-S12-S3",
         "shell_index": 12,
         "sector": 3,
-        "utc": "2026-10-15T09:55:01Z",
+        "utc": "2026-10-20T09:12:36Z",
         "harmonic_baseline": 528.0,
         "phi_scaling": 1.618034,
         "system_coherence": 0.9878,
-        "previous_proof": "cab1ea76f57958a67750f3d6450ab4a2343de8a2a7845511f1307963da654850"
+        "previous_proof": "cf16a6b38b8fa01a28b48dd3a068e4869a98984329289a4beee5002bbc559f9c"
       },
-      "proof_hash": "cca3867f1d02ec3f93257fbebb6bdbc5327d30167dc5085a05f14a1e2393048e",
+      "proof_hash": "67f8e28dd2c103cdb2f9787d15775e3f99848eed9b6aba9c994128f2d5699746",
       "signatures": {
-        "ed25519": "tNC63qM9cct4hAAqxx5Tf0iyBxMHcJctbpa0SrpzKlI=",
-        "dilithium": "B+iwMIPPCpzcH+llXLJIjC+OA1dZCvkQOQuZ8vMlYLMH6LAwg88KnNwf6WVcskiML44DV1kK+RA5C5ny8yVgswfosDCDzwqc3B/pZVyySIwvjgNXWQr5EDkLmfLzJWCzB+iwMIPPCpzcH+llXLJIjC+OA1dZCvkQOQuZ8vMlYLM="
+        "ed25519": "aLY8LN7CBAZn+PVx9rojLxwGUBayKsT+lj+zqH40IfM=",
+        "dilithium": "RZ3/J2dDPDx4LXCzbTfs2XAJ+s40ubebKtsMvyUT0B5Fnf8nZ0M8PHgtcLNtN+zZcAn6zjS5t5sq2wy/JRPQHkWd/ydnQzw8eC1ws2037NlwCfrONLm3myrbDL8lE9AeRZ3/J2dDPDx4LXCzbTfs2XAJ+s40ubebKtsMvyUT0B4="
       }
     },
     {
@@ -88,16 +88,16 @@
         "node_id": "NODE-7290-S12-S4",
         "shell_index": 12,
         "sector": 4,
-        "utc": "2026-10-15T09:55:01Z",
+        "utc": "2026-10-20T09:12:36Z",
         "harmonic_baseline": 528.0,
         "phi_scaling": 1.618034,
         "system_coherence": 0.9878,
-        "previous_proof": "cca3867f1d02ec3f93257fbebb6bdbc5327d30167dc5085a05f14a1e2393048e"
+        "previous_proof": "67f8e28dd2c103cdb2f9787d15775e3f99848eed9b6aba9c994128f2d5699746"
       },
-      "proof_hash": "d5cfdc1f363bbef1752012bfd02a9727b8e814ebba1f68c9b88150a96bdfd5d7",
+      "proof_hash": "71d01cc5fbc117d0418d60581a9e65f88916e1aabdcdcfad700f7406b9c23cc1",
       "signatures": {
-        "ed25519": "h76QrXilPFzucw3hWiDR/MzRRCTEF0yUfT5fcGz9Gvs=",
-        "dilithium": "SsFQDzbkCtP8cQWu9YUAKs73qba9AhlkJkdPJzryU69KwVAPNuQK0/xxBa71hQAqzveptr0CGWQmR08nOvJTr0rBUA825ArT/HEFrvWFACrO96m2vQIZZCZHTyc68lOvSsFQDzbkCtP8cQWu9YUAKs73qba9AhlkJkdPJzryU68="
+        "ed25519": "nEgma7D8slRTNRLPSwUxCRKDRRzQlygroVq2Jydgg5s=",
+        "dilithium": "W5OQFeoW2vLDk42pWQ/SAZ+/Zp4qLtZiNyRv6BP9XR5bk5AV6hba8sOTjalZD9IBn79mniou1mI3JG/oE/1dHluTkBXqFtryw5ONqVkP0gGfv2aeKi7WYjckb+gT/V0eW5OQFeoW2vLDk42pWQ/SAZ+/Zp4qLtZiNyRv6BP9XR4="
       }
     },
     {
@@ -112,16 +112,16 @@
         "node_id": "NODE-7290-S12-S5",
         "shell_index": 12,
         "sector": 5,
-        "utc": "2026-10-15T09:55:01Z",
+        "utc": "2026-10-20T09:12:36Z",
         "harmonic_baseline": 528.0,
         "phi_scaling": 1.618034,
         "system_coherence": 0.9878,
-        "previous_proof": "d5cfdc1f363bbef1752012bfd02a9727b8e814ebba1f68c9b88150a96bdfd5d7"
+        "previous_proof": "71d01cc5fbc117d0418d60581a9e65f88916e1aabdcdcfad700f7406b9c23cc1"
       },
-      "proof_hash": "a353233eb8187a8b3922f3237268fa2696c3f7c8815ddd707d21adfb4b6803ab",
+      "proof_hash": "fc413daaef7862e496b3a4295df54826746604bec75b85f8a817c78b2339278d",
       "signatures": {
-        "ed25519": "crhmTgtRrxQZ+eIO0B6VOYCeq4PJC+5lIZL1M5aJOyU=",
-        "dilithium": "NyrVXV4N/9OeOyW7VkQNVu6s0PkZIjwe6mCP8s1SgNk3KtVdXg3/0547JbtWRA1W7qzQ+RkiPB7qYI/yzVKA2Tcq1V1eDf/Tnjslu1ZEDVburND5GSI8Hupgj/LNUoDZNyrVXV4N/9OeOyW7VkQNVu6s0PkZIjwe6mCP8s1SgNk="
+        "ed25519": "ZBcgddgMWS6n1P5gy84H1MRN4nZFU54RYdV72tWG+7M=",
+        "dilithium": "/LqZZL7uZyh3i8ZGuh9tG8ItInvaUBpl0uONWz1LZbv8uplkvu5nKHeLxka6H20bwi0ie9pQGmXS441bPUtlu/y6mWS+7mcod4vGRrofbRvCLSJ72lAaZdLjjVs9S2W7/LqZZL7uZyh3i8ZGuh9tG8ItInvaUBpl0uONWz1LZbs="
       }
     },
     {
@@ -136,16 +136,16 @@
         "node_id": "NODE-7290-S12-S6",
         "shell_index": 12,
         "sector": 6,
-        "utc": "2026-10-15T09:55:01Z",
+        "utc": "2026-10-20T09:12:36Z",
         "harmonic_baseline": 528.0,
         "phi_scaling": 1.618034,
         "system_coherence": 0.9878,
-        "previous_proof": "a353233eb8187a8b3922f3237268fa2696c3f7c8815ddd707d21adfb4b6803ab"
+        "previous_proof": "fc413daaef7862e496b3a4295df54826746604bec75b85f8a817c78b2339278d"
       },
-      "proof_hash": "707d445f91aa4dddcfcb5586f28cbbfbc0aa2d519546d67b12a38e5dfdb87666",
+      "proof_hash": "62addda0012786fe8c1bc36ea0f1ea9d3668b9f5af3b1ca1bee6c6f0889b8bf9",
       "signatures": {
-        "ed25519": "ny7+UUvATCgkbABav1wiCt7LLo14T7/laSoU4LxXWbw=",
-        "dilithium": "Xy4b/YZbDsIp52oX5MEzQ6d1hwlS2ahY51YPaLkvHaJfLhv9hlsOwinnahfkwTNDp3WHCVLZqFjnVg9ouS8dol8uG/2GWw7CKedqF+TBM0OndYcJUtmoWOdWD2i5Lx2iXy4b/YZbDsIp52oX5MEzQ6d1hwlS2ahY51YPaLkvHaI="
+        "ed25519": "DeKsq6D+I+GKDH2dQJoZJopFIrmg7kZYy/Sg45wryd8=",
+        "dilithium": "v27POJRenutbsD2W66JgV3stzGPN5QiZC40Y9E6jS8K/bs84lF6e61uwPZbromBXey3MY83lCJkLjRj0TqNLwr9uzziUXp7rW7A9luuiYFd7LcxjzeUImQuNGPROo0vCv27POJRenutbsD2W66JgV3stzGPN5QiZC40Y9E6jS8I="
       }
     }
   ]
