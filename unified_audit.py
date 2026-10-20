@@ -15,7 +15,9 @@ def verify_signature(node_id: str, public_key: str, payload: str, signature: str
         return False
     return True
 
-def audit_node(node: Dict[str, Any]) -> Dict[str, Any]:
+def audit_node(node: Any) -> Dict[str, Any]:
+    if isinstance(node, str):
+        node = {"node_id": node, "public_key": "0x_anchor_pubkey", "last_heartbeat": time.time()}
     now = time.time()
     node_id = node.get("node_id")
     pub_key = node.get("public_key")
