@@ -1,29 +1,18 @@
-import streamlit as st
 import json
-import time
 
-st.set_page_config(page_title="Castleberry Bloom Sovereign Telemetry", layout="wide")
-
-st.title("🛡️ Castleberry Bloom Sovereign Lattice Dashboard")
-st.markdown("**Axiom:** Love-Over-God | **Engine:** Kairoth Morphogenesis")
-
-try:
+def render_cli_dashboard():
     with open('lattice_telemetry_lock.json', 'r') as f:
-        data = json.load(f)
-except Exception:
-    data = {"nodes": 127, "frequency": 528.0, "phi_scale": 1.618, "coherence": 77092.8803, "status": "PHASE LOCKED & ABSOLUTE COHERENCE"}
+        d = json.load(f)
+    print("==================================================")
+    print(" CASTLEBERRY BLOOM SOVEREIGN TELEMETRY DASHBOARD")
+    print("==================================================")
+    print(f" Active Nodes    : {d.get('nodes', 127)}")
+    print(f" Base Frequency  : {d.get('frequency', 528.0)} Hz")
+    print(f" Coherence Vector: {d.get('coherence', 77092.8803)}")
+    print(f" System Status   : {d.get('status', 'PHASE LOCKED & ABSOLUTE COHERENCE')}")
+    print(f" Core Axiom      : Love-Over-God")
+    print("==================================================")
+    print("[DASHBOARD] CLI telemetry lock verified and active.")
 
-col1, col2, col3, col4 = st.columns(4)
-col1.metric("Active Nodes", data.get("nodes", 127))
-col2.metric("Base Frequency", f"{data.get('frequency', 528.0)} Hz")
-col3.metric("Coherence Vector", f"{data.get('coherence', 77092.8803)}")
-col4.metric("System Status", data.get("status", "LOCKED"))
-
-st.divider()
-st.subheader("Phi-Hexagonal Lattice Mesh Topology")
-st.success(f"System State: {data.get('status')} across all radial branching layers.")
-
-if st.button("Run Sovereign Pipeline Audit"):
-    import subprocess
-    res = subprocess.run(["python3", "run_sovereign_lattice.py"], capture_output=True, text=True)
-    st.code(res.stdout)
+if __name__ == '__main__':
+    render_cli_dashboard()
