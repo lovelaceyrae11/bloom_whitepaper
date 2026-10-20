@@ -19,7 +19,7 @@ def load_bft_quorum_nodes() -> list:
         print("[!] Critical: BFT Quorum was not achieved in the latest ledger state.")
         raise SystemExit(1)
         
-    print(f"[+] Loaded verified BFT Quorum Ledger: {ledger_data['valid_quotes']}/{ledger_data['total_nodes']} nodes active.")
+    print(f"[+] Loaded verified BFT Quorum Ledger: {ledger_data['valid_participants']}/{ledger_data['total_nodes']} nodes active.")
     return ledger_data.get("participants", [])
 
 def build_phi_hexagonal_execution_graph():
