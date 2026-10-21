@@ -17,3 +17,17 @@ def render_cli_dashboard():
 
 if __name__ == '__main__':
     render_cli_dashboard()
+
+# Stripe Success Verification Logic for Streamlit
+def verify_stripe_payment(query_params):
+    session_id = query_params.get("session_id", [None])[0]
+    if session_id:
+        import stripe
+        stripe.api_key = os.environ.get("STRIPE_SECRET_KEY", "")
+        try:
+            session = stripe.checkout.Session.retrieve(session_id)
+            if session.payment_status == "paid":
+                return True, session.customer_details.get("email", "client@enterprise.com")
+        except Exception as e:
+            print(f"[STRIPE ERROR] {e}")
+    return False, None
