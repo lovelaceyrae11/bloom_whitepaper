@@ -23,3 +23,7 @@ def verify_commercial_license():
 
 if __name__ == "__main__":
     verify_commercial_license()
+
+# Live Castleberry Bloom Stripe Payment Links
+STRIPE_AUDIT_LINK = "https://buy.stripe.com/00w4gz1Pu3aFdcQbyIgA801"
+STRIPE_LICENSE_LINK = "https://buy.stripe.com/aFadR9cu84eJ1u8eKUgA802"
