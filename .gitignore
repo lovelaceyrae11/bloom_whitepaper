@@ -1,0 +1,3 @@
+audit_snapshot/
+test_artifacts/
+*.tar.gz
