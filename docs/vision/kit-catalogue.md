@@ -9,7 +9,7 @@ This catalogue defines the core structural components, node specifications, and 
 * **Governance:** Per-user token quotas and platform-wide execution switches.
 
 ## Kit Modules
-1. **Mycelial Socket Router:** Handles UDP/TCP packet transmission across active swarm nodes.
+1. **Mycelial Socket Router:** Handles UDP/TCP packet transmission across active swarm nodes (`cml_mycelial_router.py`).
 2. **Coherence Enforcement Engine:** Validates state stability and runtime guardrails (`guardrail-kit`).
 3. **Credit & Quota Unit:** Manages resource allocation per sub-agent and user session.
 
