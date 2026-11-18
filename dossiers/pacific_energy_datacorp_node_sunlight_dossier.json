@@ -1,0 +1,22 @@
+{
+  "manifesto": "Love Over God - Absolute Transparency Framework",
+  "target_entity": "Pacific_Energy_DataCorp_Node",
+  "total_records_audited": 1,
+  "generated_at": "2026-11-11T04:46:54.408086",
+  "ledger": [
+    {
+      "record_id": "ORESTAR_REF_99482",
+      "target": "Pacific_Energy_DataCorp_Node",
+      "sector": "Grid & Water Infrastructure",
+      "source_url": "https://orestar.sos.state.or.us/",
+      "data": {
+        "transfer_amount": 60000,
+        "recipient_PAC": "Utility_Capture_Fund_A",
+        "water_rights_mgd": 4.2
+      },
+      "anomaly_score": 0.94,
+      "ingested_at": "2026-11-11T04:46:54.408086",
+      "crypto_hash": "46ef612619ce4cce2994afb9441bfc08f475d281b32efd2026f62298c62b55c9"
+    }
+  ]
+}
