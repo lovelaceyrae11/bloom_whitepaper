@@ -145,9 +145,8 @@ def generate_pki_cluster():
     ET.indent(tree, space="    ", level=0)
     tree.write("cluster_extended.cml", encoding="utf-8", xml_declaration=True)
     
-    with open("node_secrets.json", "w") as f:
-        json.dump(node_secrets, f, indent=2)
         
+    print("[*] Plaintext private-key export is disabled.")
     print(f"[*] Generated 127 PKI-backed nodes with Root CA certificates in 'cluster_extended.cml'.")
 
 if __name__ == "__main__":

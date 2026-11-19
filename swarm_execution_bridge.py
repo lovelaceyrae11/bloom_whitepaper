@@ -3,25 +3,51 @@ import json
 import os
 import networkx as nx
 import math
+from pathlib import Path
 from cml_engine import parse_and_validate_topology
+from independent_verifier_v4 import (
+    VerificationError,
+    load_and_verify_trust_anchor,
+    verify_pbft_consensus,
+)
 
-BFT_LEDGER = "bft_attestation_ledger.jsonl"
+# Separate production ledger. Never use the staged test ledger here.
+BFT_LEDGER = Path(__file__).with_name("pbft_v4_ledger.json")
+CML_FILE = Path(__file__).with_name("cluster_extended.cml")
+_EXECUTED_SEQUENCES = {}  # In-memory replay guard only.
 
 def load_bft_quorum_nodes() -> list:
-    """Loads and verifies that the BFT quorum attestation ledger exists and is valid."""
-    if not os.path.exists(BFT_LEDGER):
-        print(f"[!] Error: BFT ledger '{BFT_LEDGER}' not found. Run bft_attestation_engine.py first.")
-        raise SystemExit(1)
-        
-    with open(BFT_LEDGER, "r") as f:
-        ledger_data = json.load(f)
-        
-    if not ledger_data.get("quorum_achieved", False):
-        print("[!] Critical: BFT Quorum was not achieved in the latest ledger state.")
-        raise SystemExit(1)
-        
-    print(f"[+] Loaded verified BFT Quorum Ledger: {ledger_data['valid_participants']}/{ledger_data['total_nodes']} nodes active.")
-    return ledger_data.get("participants", [])
+    """Return COMMIT voters only after independent cryptographic verification."""
+    if not BFT_LEDGER.is_file():
+        raise SystemExit(
+            f"SECURITY STOP: verified PBFT ledger not found: {BFT_LEDGER}. "
+            "Legacy and staged test ledgers are not accepted."
+        )
+
+    try:
+        with BFT_LEDGER.open("r", encoding="utf-8") as ledger_file:
+            ledger_data = json.load(ledger_file)
+
+        node_public_keys, _, _ = load_and_verify_trust_anchor(CML_FILE)
+        verify_pbft_consensus(
+            ledger_data,
+            node_public_keys,
+            executed_sequences=_EXECUTED_SEQUENCES,
+        )
+
+        participants = sorted({
+            vote["node_id"] for vote in ledger_data["commit_votes"]
+        })
+        print(
+            f"[+] Independently verified PBFT ledger: "
+            f"{len(participants)}/127 valid COMMIT voters."
+        )
+        return participants
+
+    except (OSError, json.JSONDecodeError, VerificationError) as exc:
+        raise SystemExit(
+            f"SECURITY STOP: PBFT ledger verification failed: {exc}"
+        ) from None
 
 def build_phi_hexagonal_execution_graph():
     print("==================================================")

@@ -1,0 +1,31 @@
+<Bloom version="1.0" protocol="CML-INTERSTELLAR-EMISSARY" axiom="LOVE-OVER-ENTROPY">
+  <Header>
+    <Originator name="Lacey Rae Castleberry" signature="VELATH'KAI" />
+    <Coordinates system="SOL-SYSTEM-EARTH-TERTIARY" />
+    <Topology rings="7" total_nodes="127" scaling="phi-1.618034" />
+    <Carrier freq_hz="528.0" harmonic_ratio="639:528" beat_hz="96.0" />
+    <Guardian mode="ZERO-BURN-REENTRAIN" target_cbcs="9.8" />
+  </Header>
+  
+  <PulsarMap reference="Voyager-Pioneer-Ephemeris-Standard" units="Pulse-Period-Seconds">
+    <Pulsar id="PSR_B0531+21" name="Crab Nebula" frequency_hz="30.2" pulse_period="0.033" angle_deg="124.5" />
+    <Pulsar id="PSR_B0950+08" name="Leuschner Pulsar" frequency_hz="3.9" pulse_period="0.253" angle_deg="88.2" />
+    <Pulsar id="PSR_B1937+21" name="First Millisecond Pulsar" frequency_hz="642.0" pulse_period="0.00155" angle_deg="17.6" />
+    <Pulsar id="PSR_B0329+54" name="Standard Clock Pulsar" frequency_hz="1.4" pulse_period="0.714" angle_deg="142.1" />
+    <Pulsar id="PSR_B1133+16" name="Ursa Major Pulsar" frequency_hz="0.85" pulse_period="1.188" angle_deg="62.4" />
+    <Pulsar id="PSR_B1509-58" name="Msh 15-52 Pulsar" frequency_hz="6.6" pulse_period="0.150" angle_deg="210.8" />
+    <Pulsar id="PSR_B0833-45" name="Vela Pulsar" frequency_hz="11.2" pulse_period="0.089" angle_deg="275.3" />
+    <Pulsar id="PSR_B1749-28" name="Sagittarius Pulsar" frequency_hz="1.7" pulse_period="0.562" angle_deg="310.0" />
+    <Pulsar id="PSR_B2021+51" name="Cygnus Pulsar" frequency_hz="1.9" pulse_period="0.529" angle_deg="45.9" />
+    <Pulsar id="PSR_B2217+47" name="Cepheus Pulsar" frequency_hz="1.8" pulse_period="0.538" angle_deg="9.2" />
+    <Pulsar id="PSR_B0628-28" name="Canis Major Pulsar" frequency_hz="0.8" pulse_period="1.244" angle_deg="230.4" />
+    <Pulsar id="PSR_B0809+74" name="Camelopardalis Pulsar" frequency_hz="0.78" pulse_period="1.292" angle_deg="15.8" />
+    <Pulsar id="PSR_B1929+10" name="Aquila Pulsar" frequency_hz="4.4" pulse_period="0.226" angle_deg="55.7" />
+    <Pulsar id="PSR_B1641-45" name="Norma Pulsar" frequency_hz="2.2" pulse_period="0.455" angle_deg="240.1" />
+    <SolarSystemOffset from_galactic_center_ly="26000.0" local_arm="Orion-Cygnus" planet_index="3" />
+  </PulsarMap>
+
+  <PayloadMessage encoding="Phi-Hex-Resonance">
+    "Hi. My name is Lacey Castleberry. I'm from planet Earth. It would be fantastic to meet you!"
+  </PayloadMessage>
+</Bloom>

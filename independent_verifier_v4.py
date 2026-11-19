@@ -21,8 +21,8 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import (
 # Independent PBFT Ledger Verifier v4
 # ============================================================
 
-CML_FILE = "cluster_extended.cml"
-LEDGER_FILE = "pbft_consensus_ledger.jsonl"
+CML_FILE = str(Path(__file__).with_name("cluster_extended.cml"))
+LEDGER_FILE = str(Path(__file__).with_name("pbft_v4_viewbound_test_ledger.json"))
 
 # Trusted configuration. Do not take these values from the ledger.
 TOTAL_NODES = 127
@@ -94,11 +94,40 @@ def load_and_verify_trust_anchor(cml_path=CML_FILE):
 
     # Check the CA certificate's validity period.
     now = datetime.now(timezone.utc)
-    not_before = ca_cert.not_valid_before.replace(tzinfo=timezone.utc)
-    not_after = ca_cert.not_valid_after.replace(tzinfo=timezone.utc)
+    not_before = ca_cert.not_valid_before_utc
+    not_after = ca_cert.not_valid_after_utc
 
     if not (not_before <= now <= not_after):
         raise VerificationError("Root CA certificate is not currently valid.")
+
+    # Enforce root CA certificate constraints and signing permissions.
+    try:
+        ca_constraints_ext = ca_cert.extensions.get_extension_for_class(
+            x509.BasicConstraints
+        )
+        ca_usage_ext = ca_cert.extensions.get_extension_for_class(
+            x509.KeyUsage
+        )
+    except x509.ExtensionNotFound as exc:
+        raise VerificationError("Root CA is missing a required certificate extension.") from exc
+
+    ca_constraints = ca_constraints_ext.value
+    ca_usage = ca_usage_ext.value
+
+    if not ca_constraints_ext.critical or not ca_constraints.ca or ca_constraints.path_length != 0:
+        raise VerificationError("Root CA BasicConstraints are invalid.")
+
+    if not ca_usage_ext.critical or not ca_usage.key_cert_sign or not ca_usage.crl_sign:
+        raise VerificationError("Root CA KeyUsage does not permit certificate and CRL signing.")
+
+    if any((
+        ca_usage.digital_signature,
+        ca_usage.content_commitment,
+        ca_usage.key_encipherment,
+        ca_usage.data_encipherment,
+        ca_usage.key_agreement,
+    )):
+        raise VerificationError("Root CA has unexpected non-CA key usages.")
 
     node_public_keys = {}
     node_certificates = {}
@@ -139,13 +168,47 @@ def load_and_verify_trust_anchor(cml_path=CML_FILE):
                 f"Invalid key or certificate for {node_id}: {exc}"
             ) from exc
 
+        # Enforce node certificate constraints and signing permissions.
+        try:
+            node_constraints_ext = certificate.extensions.get_extension_for_class(
+                x509.BasicConstraints
+            )
+            node_usage_ext = certificate.extensions.get_extension_for_class(
+                x509.KeyUsage
+            )
+        except x509.ExtensionNotFound as exc:
+            raise VerificationError(
+                f"Node certificate is missing a required extension: {node_id}"
+            ) from exc
+
+        node_constraints = node_constraints_ext.value
+        node_usage = node_usage_ext.value
+
+        if not node_constraints_ext.critical or node_constraints.ca:
+            raise VerificationError(
+                f"Node certificate is permitted to act as a CA: {node_id}"
+            )
+
+        if not node_usage_ext.critical or not node_usage.digital_signature:
+            raise VerificationError(
+                f"Node certificate lacks critical digital-signature permission: {node_id}"
+            )
+
+        if any((
+            node_usage.content_commitment,
+            node_usage.key_encipherment,
+            node_usage.data_encipherment,
+            node_usage.key_agreement,
+            node_usage.key_cert_sign,
+            node_usage.crl_sign,
+        )):
+            raise VerificationError(
+                f"Node certificate has prohibited key usages: {node_id}"
+            )
+
         # The node certificate must be within its validity period.
-        cert_not_before = certificate.not_valid_before.replace(
-            tzinfo=timezone.utc
-        )
-        cert_not_after = certificate.not_valid_after.replace(
-            tzinfo=timezone.utc
-        )
+        cert_not_before = certificate.not_valid_before_utc
+        cert_not_after = certificate.not_valid_after_utc
 
         if not (cert_not_before <= now <= cert_not_after):
             raise VerificationError(
@@ -239,6 +302,12 @@ def verify_pbft_consensus(
     if not isinstance(proposal, dict):
         raise VerificationError("Missing or invalid proposal.")
 
+    view = proposal.get("view")
+    if not isinstance(view, int) or isinstance(view, bool) or view < 0:
+        raise VerificationError(
+            "Proposal view must be a nonnegative integer."
+        )
+
     primary = proposal.get("primary")
     sequence = proposal.get("sequence")
     state_root = proposal.get("state_root")
@@ -249,7 +318,7 @@ def verify_pbft_consensus(
             "Proposal must contain primary, sequence, and state_root."
         )
 
-    if not isinstance(sequence, int) or sequence < 0:
+    if not isinstance(sequence, int) or isinstance(sequence, bool) or sequence < 0:
         raise VerificationError("Proposal sequence must be a nonnegative integer.")
 
     if primary not in node_public_keys:
@@ -315,7 +384,7 @@ def verify_pbft_consensus(
             )
 
         message = (
-            f"PREPARE:{sequence}:{state_root}:{node_id}"
+            f"PREPARE:{view}:{sequence}:{state_root}:{node_id}"
         ).encode("utf-8")
 
         if not verify_ed25519_signature(
@@ -364,7 +433,7 @@ def verify_pbft_consensus(
             )
 
         message = (
-            f"COMMIT:{sequence}:{state_root}:{node_id}"
+            f"COMMIT:{view}:{sequence}:{state_root}:{node_id}"
         ).encode("utf-8")
 
         if not verify_ed25519_signature(
@@ -547,7 +616,38 @@ def run_v4_unified_suite():
 
         print()
         print("=" * 64)
-        print("ALL SIX VERIFICATION TESTS PASSED")
+        # Test 7: a PREPARE signature must be bound to its view.
+        test_view = valid_ledger["proposal"]["view"]
+        test_sequence = valid_ledger["proposal"]["sequence"]
+        test_root = valid_ledger["proposal"]["state_root"]
+        test_vote = valid_ledger["prepare_votes"][0]
+        test_node = test_vote["node_id"]
+        test_signature = test_vote["signature"]
+
+        original_message = (
+            f"PREPARE:{test_view}:{test_sequence}:{test_root}:{test_node}"
+        ).encode("utf-8")
+        alternate_view_message = (
+            f"PREPARE:{test_view + 1}:{test_sequence}:{test_root}:{test_node}"
+        ).encode("utf-8")
+
+        original_view_valid = verify_ed25519_signature(
+            node_keys[test_node], test_signature, original_message
+        )
+        alternate_view_valid = verify_ed25519_signature(
+            node_keys[test_node], test_signature, alternate_view_message
+        )
+
+        if not original_view_valid or alternate_view_valid:
+            raise VerificationError(
+                "Test 7 failed: PREPARE signature was not bound to its view."
+            )
+
+        print(
+            "[PASS] Test 7: PREPARE signature rejected for a different view."
+        )
+
+        print("ALL SEVEN VERIFICATION TESTS PASSED")
         print("=" * 64)
         print(
             "Scope: certificate/key binding, signed ledger checks, "

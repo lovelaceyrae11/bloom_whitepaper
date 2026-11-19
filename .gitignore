@@ -1,3 +1,18 @@
 audit_snapshot/
 test_artifacts/
 *.tar.gz
+
+# Runtime databases, logs, caches, and OTS proofs
+*.db
+*.sqlite
+*.sqlite3
+*.log
+*.ots
+__pycache__/
+*.py[cod]
+
+# Outreach, lead lists, target files, and secret rotation helpers
+outreach_*.txt
+b2b_live_leads.md
+pals_unmasked_targets.json
+update_pals_secret.py

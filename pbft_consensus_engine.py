@@ -1,3 +1,8 @@
+
+raise SystemExit(
+    "LEGACY ENGINE RETIRED: plaintext node_secrets.json is not supported."
+)
+
 # Copyright (c) 2025-2026 Lacey Rae Castleberry. Dual-Licensed (AGPLv3 / Commercial). See COMMERCIAL_LICENSE.md
 import os
 import json
